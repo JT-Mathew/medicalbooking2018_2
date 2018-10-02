@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SEProject</string>
+    <string name="makeapp">Make an \nAppointment</string>
+    <string name="manApp">Manage an \nAppointment</string>
+    <string name="pastApp">Past \nAppointment</string>
+    <string name="email">Email</string>
+    <string name="action_settings">Settings</string>
+</resources>
