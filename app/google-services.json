@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1089880575486",
+    "firebase_url": "https://sep2018-7c877.firebaseio.com",
+    "project_id": "sep2018-7c877",
+    "storage_bucket": "sep2018-7c877.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089880575486:android:64fb40f0ef656e1b",
+        "android_client_info": {
+          "package_name": "c.hayeon.seproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089880575486-37cf9f2v5bjqiopr69un4bpt0jcg43v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnCYFMiMAiBjL8wf61FNf5eeh8-77Kyjs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
