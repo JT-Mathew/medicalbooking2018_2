@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar menubar;
     User user;
     @Override
+    //blah change
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
