@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         test = new User("Hayeon", "Kim", "1",
                 "1", "1", "abc road",
                 "ABC", 1111);
-
+//asdfasdfadsf
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
