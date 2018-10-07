@@ -20,13 +20,13 @@
                 android:background="@drawable/button_design"
                 android:textColor="@android:color/black"
                 android:padding="10dp"
-                android:id="@+id/nineTv"/>
+                android:id="@+id/nineBtn"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9:30"
                 android:padding="10dp"
-                android:id="@+id/nineThirtyTv"
+                android:id="@+id/nineHalfBtn"
                 android:background="@drawable/button_design"
                 android:textColor="@android:color/black"/>
             <Button
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="10:00"
                 android:padding="10dp"
-                android:id="@+id/tenTv"
+                android:id="@+id/tenBtn"
                 android:background="@drawable/button_design"
                 android:textColor="@android:color/black"/>
             <Button
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="10:30"
                 android:padding="10dp"
-                android:id="@+id/tenThirtyTv"
+                android:id="@+id/tenHalfBtn"
                 android:background="@drawable/button_design"
                 android:textColor="@android:color/black"/>
 
