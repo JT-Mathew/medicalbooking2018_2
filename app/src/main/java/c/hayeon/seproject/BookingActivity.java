@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import c.hayeon.seproject.adapter.DateAdapter;
+import c.hayeon.seproject.model.Appointment;
 import c.hayeon.seproject.model.Date;
 import c.hayeon.seproject.model.Time;
+import c.hayeon.seproject.model.User;
 
 public class BookingActivity extends AppCompatActivity {
 
@@ -25,8 +27,10 @@ public class BookingActivity extends AppCompatActivity {
     private DateAdapter mDateAdapter;
     private List<Date> mDates;
     Toolbar menubar;
+    User user;
+    Appointment appointment;
 
-    Button timeBtn;
+    Button bookBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +40,25 @@ public class BookingActivity extends AppCompatActivity {
         setSupportActionBar(menubar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        bookBtn = findViewById(R.id.bookBtn);
+
         mTimeDateRv = findViewById(R.id.timeDateRv);
-       getDates();
-        mDateAdapter = new DateAdapter(mDates, this);
+        getDates();
+        appointment = new Appointment();
+        mDateAdapter = new DateAdapter(mDates, this, appointment);
         mTimeDateRv.setLayoutManager(new LinearLayoutManager(BookingActivity.this));
         mTimeDateRv.setAdapter(mDateAdapter);
 
+        user = (User) getIntent().getExtras().getSerializable("user");
 
+        bookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               String t= appointment.getDoc() + appointment.getDate() + appointment.getTime();
+               user.getCurrentAppointments().add(new  Appointment(appointment.getDate(), appointment.getTime(), appointment.getDoc()));
+               finish();
+        };
+        });
     }
 
     public void getDates() {

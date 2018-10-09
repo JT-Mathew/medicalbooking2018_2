@@ -15,8 +15,8 @@ public class User implements Serializable{
     String streetName;
     String suburbName;
     int postcode;
-    List<Appointment> currentAppointments= new ArrayList<Appointment>();
-    List<Appointment> pastAppointments = new ArrayList<Appointment>();
+    List<Appointment> currentAppointments= new ArrayList<>();
+    List<Appointment> pastAppointments = new ArrayList<>();
 
     public User(String firstName, String lastName, String studentId, String password, String roadNumber, String streetName, String suburbName, int postcode) {
         this.firstName = firstName;
@@ -29,6 +29,13 @@ public class User implements Serializable{
         this.password = password;
     }
 
+    public List<Appointment> getCurrentAppointments() {
+        return currentAppointments;
+    }
+
+    public List<Appointment> getPastAppointments() {
+        return pastAppointments;
+    }
 
     public String getFirstName() {
         return firstName;

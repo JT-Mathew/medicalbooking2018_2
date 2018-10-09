@@ -13,6 +13,7 @@ import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import java.util.List;
 
 import c.hayeon.seproject.R;
+import c.hayeon.seproject.model.Appointment;
 import c.hayeon.seproject.model.Time;
 import c.hayeon.seproject.viewholder.DateViewHolder;
 import c.hayeon.seproject.viewholder.TimeViewHolder;
@@ -21,9 +22,11 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
 
 
     Context mContext;
-    public DateAdapter(List<? extends ExpandableGroup> groups, Context context) {
+    Appointment mAppointment;
+    public DateAdapter(List<? extends ExpandableGroup> groups, Context context, Appointment appointment) {
         super(groups);
         mContext=context;
+        mAppointment=appointment;
     }
 
     @Override
@@ -38,31 +41,30 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
         return new TimeViewHolder(view);    }
 
     @Override
-    public void onBindChildViewHolder(TimeViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
+    public void onBindChildViewHolder(final TimeViewHolder holder, int flatPosition, final ExpandableGroup group, int childIndex) {
         Time time = (Time) group.getItems().get(childIndex);
-        String t = time.getHour() + ":" + time.getMin();
+        final String t = time.getHour() + ":" + time.getMin();
         holder.setTimeCTV(t);
         holder.getTimeBtn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Your title");
-                builder.setMessage("your message ");
-                builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
+                final String[] doctors = new String[]{"Jane Doe", "Blah Test", "Third Doc"};
+                builder.setTitle("Doctors available:");
+                builder.setSingleChoiceItems(doctors, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       mAppointment.setDate(group.getTitle());
+                       mAppointment.setTime(t);
+                       mAppointment.setDoc(doctors[which]);
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        // DO SOMETHING HERE
-
-                    }
-                });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

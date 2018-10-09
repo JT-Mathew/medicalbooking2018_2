@@ -19,8 +19,12 @@ import c.hayeon.seproject.model.User;
 public class MainActivity extends AppCompatActivity {
     Button detailBtn;
     Button newAppBtn;
+    Button mngAppBtn;
+
     TextView nameTv;
+    TextView testingTv;
     Toolbar menubar;
+
     User user;
     @Override
     //blah change
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         nameTv = findViewById(R.id.nameTv);
         String name = user.getFirstName() + " " + user.getLastName();
         nameTv.setText(name);
+
+        testingTv = findViewById(R.id.testingApp);
 
         //menubar related
         menubar = findViewById(R.id.menuBar);
@@ -56,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        mngAppBtn = findViewById(R.id.mngAppBtn);
+        mngAppBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ManageActivity.class);
+                intent.putExtra("user", user);
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String t = user.getCurrentAppointments().size() + "";
+        testingTv.setText(t);
 
     }
 

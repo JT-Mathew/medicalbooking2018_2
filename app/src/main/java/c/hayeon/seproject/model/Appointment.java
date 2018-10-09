@@ -5,47 +5,41 @@ import java.util.UUID;
 public class Appointment {
 
 
-    Date appointmentDateTime;
-    String studentId;
-    String docId;
-    UUID appointmentId;
 
-    public Appointment(Date appointmentDateTime, String studentId, String docId, UUID appointmentId) {
-        this.appointmentDateTime = appointmentDateTime;
-        this.studentId = studentId;
-        this.docId = docId;
-        appointmentId = UUID.randomUUID();
+    String date;
+    String time;
+    String doc;
+
+    public Appointment(String date, String time, String doc) {
+        this.date = date;
+        this.time = time;
+        this.doc = doc;
     }
 
-    public Date getAppointmentDateTime() {
-        return appointmentDateTime;
+    public Appointment() {
     }
 
-    public void setAppointmentDateTime(Date appointmentDateTime) {
-        this.appointmentDateTime = appointmentDateTime;
+    public String getDate() {
+        return date;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public String getTime() {
+        return time;
     }
 
-    public String getDocId() {
-        return docId;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public void setDocId(String docId) {
-        this.docId = docId;
+    public String getDoc() {
+        return doc;
     }
 
-    public UUID getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(UUID appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setDoc(String doc) {
+        this.doc = doc;
     }
 }
