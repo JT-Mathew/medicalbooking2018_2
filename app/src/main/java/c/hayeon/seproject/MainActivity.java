@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         String name = user.getFirstName() + " " + user.getLastName();
         nameTv.setText(name);
 
-        testingTv = findViewById(R.id.testingApp);
-
         //menubar related
         menubar = findViewById(R.id.menuBar);
         setSupportActionBar(menubar);
@@ -74,13 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        String t = user.getCurrentAppointments().size() + "";
-        testingTv.setText(t);
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

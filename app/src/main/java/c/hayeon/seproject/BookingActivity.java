@@ -39,6 +39,13 @@ public class BookingActivity extends AppCompatActivity {
         menubar = findViewById(R.id.menuBar);
         setSupportActionBar(menubar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        menubar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_goback));
+        menubar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//What to do on back clicked
+            }
+        });
 
         bookBtn = findViewById(R.id.bookBtn);
 

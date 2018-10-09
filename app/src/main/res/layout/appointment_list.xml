@@ -5,9 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:padding="5dp"
-    android:background="@drawable/button_design"
-
-    >
+    android:background="@drawable/button_design">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -16,7 +14,8 @@
 
     <TableRow
         android:background="@drawable/subheading_design">
-        <TextView android:text="Appointment" />
+        <TextView android:text="Appointment"
+            android:padding="5dp"/>
     </TableRow>
 
     <TableRow>
