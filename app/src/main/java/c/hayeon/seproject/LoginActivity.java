@@ -1,5 +1,6 @@
 package c.hayeon.seproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 //import c.hayeon.seproject.model.AddAppiontDetail;
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     Button exitBtn;
     User test;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 search(idEt.getText().toString(),passwordEt.getText().toString());
-
-            /*    if (idEt.getText().toString().equals(test.getStudentId()) &&
-                        passwordEt.getText().toString().equals(test.getPassword())) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("user", test);
-                    startActivityForResult(intent, 0);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Wrong Credential", Toast.LENGTH_SHORT).show();
-                }*/
             }
         });
 
@@ -88,6 +82,10 @@ public class LoginActivity extends AppCompatActivity {
     private void search(String id, String password) {
         final String myID = id;
         final String myPassword = password;
+        pd = new ProgressDialog(this);
+        pd.setMessage("Checking Credential...");
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.show();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -102,10 +100,12 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("user", test);
                         startActivityForResult(intent, 0);
                     }else{
+                        pd.dismiss();
                         Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (NullPointerException e) {
+                    pd.dismiss();
                     Toast.makeText(LoginActivity.this, "Sorry, No current user is available", Toast.LENGTH_SHORT).show();
                 }
 

@@ -75,5 +75,6 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
     @Override
     public void onBindGroupViewHolder(DateViewHolder holder, int flatPosition, ExpandableGroup group) {
         holder.setDate(group.getTitle());
+
     }
 }
