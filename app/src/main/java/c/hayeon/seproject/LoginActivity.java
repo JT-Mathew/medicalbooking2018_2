@@ -79,6 +79,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private User getUser(){
+
+        //database
+        return null;
+    }
 
     private void search(String id, String password) {
         final String myID = id;

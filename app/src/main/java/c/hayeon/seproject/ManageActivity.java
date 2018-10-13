@@ -54,6 +54,10 @@ public class ManageActivity extends AppCompatActivity {
         mAppointmentRv.setAdapter(mAppointmentViewHolderAdapter);
     }
 
+    private void getAppointment(){
+        //database pull made appointment
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -70,6 +70,7 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     public void getDates() {
+        //dates
         mDates = new ArrayList<>();
         List<Time> times = new ArrayList<>();
         times.add(new Time("9", "00"));
