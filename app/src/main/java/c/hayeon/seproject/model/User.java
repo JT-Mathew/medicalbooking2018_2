@@ -9,14 +9,18 @@ public class User implements Serializable{
 
     String firstName;
     String lastName;
-    String studentId;
-    String password;
+    public String studentId;
+    public String password;
     String roadNumber;
     String streetName;
     String suburbName;
     int postcode;
     List<Appointment> currentAppointments= new ArrayList<>();
     List<Appointment> pastAppointments = new ArrayList<>();
+
+    public User() {
+
+    }
 
     public User(String firstName, String lastName, String studentId, String password, String roadNumber, String streetName, String suburbName, int postcode) {
         this.firstName = firstName;
