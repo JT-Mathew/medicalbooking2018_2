@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         exitBtn = findViewById(R.id.exitBtn);
 
         test = new User("Hayeon", "Kim", "1",
-                "1", "46", "Raleigh Avenue",
-                "Caringbah", 2229);
+                "1", "1", "Abc Avenue",
+                "ABCDEF", 1111);
 
         myRef.child("User").child(test.studentId).setValue(test);
 
@@ -73,11 +73,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private User getUser(){
-
-        //database
-        return null;
-    }
 
     private void search(String id, String password) {
         final String myID = id;
@@ -89,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User myUser = dataSnapshot.child("student").child(myID).getValue(User.class);
+                User myUser = dataSnapshot.child("User").child(myID).getValue(User.class);
                 try {
                     Toast.makeText(LoginActivity.this, myUser.password, Toast.LENGTH_SHORT).show();
 

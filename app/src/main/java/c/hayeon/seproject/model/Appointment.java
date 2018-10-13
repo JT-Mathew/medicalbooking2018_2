@@ -9,11 +9,13 @@ public class Appointment {
     String date;
     String time;
     String doc;
+    boolean status;
 
     public Appointment(String date, String time, String doc) {
         this.date = date;
         this.time = time;
         this.doc = doc;
+        status = true;
     }
 
     public Appointment() {

@@ -1,6 +1,7 @@
 package c.hayeon.seproject;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import c.hayeon.seproject.model.User;
 
 
@@ -23,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button mngAppBtn;
 
     TextView nameTv;
-    TextView testingTv;
     Toolbar menubar;
 
+    TextView currentDateTv;
     User user;
     @Override
     //blah change
@@ -36,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         nameTv = findViewById(R.id.nameTv);
         String name = user.getFirstName() + " " + user.getLastName();
         nameTv.setText(name);
+
+        currentDateTv = findViewById(R.id.currentDateTv);
+        String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        currentDateTv.setText(date);
 
         //menubar related
         menubar = findViewById(R.id.menuBar);
@@ -87,12 +96,17 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_logout:
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                GoToActivityAsNewTask(this, LoginActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public static void GoToActivityAsNewTask(Activity context, Class<?> clazz) {
+        Intent intent = new Intent(context, clazz);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+        context.finish();
+
     }
 }
