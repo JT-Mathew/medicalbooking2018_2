@@ -57,5 +57,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private User getUser(){
+
+        //database
+        return null;
+    }
 
 }
