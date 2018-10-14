@@ -52,6 +52,7 @@ public class BookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
 
+
         menubar = findViewById(R.id.menuBar);
         setSupportActionBar(menubar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -125,6 +126,7 @@ public class BookingActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
