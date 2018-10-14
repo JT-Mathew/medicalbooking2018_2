@@ -153,7 +153,7 @@ public class BookingActivity extends AppCompatActivity {
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(BookingActivity.this, "Sorry, this is unavailable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookingActivity.this, "Sorry, the selected time slot with doctor is unavailable!", Toast.LENGTH_SHORT).show();
                 }
 
 
