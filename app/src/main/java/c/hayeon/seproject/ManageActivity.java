@@ -1,6 +1,7 @@
 package c.hayeon.seproject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,23 +10,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import c.hayeon.seproject.adapter.AppointmentAdapter;
 import c.hayeon.seproject.model.Appointment;
 import c.hayeon.seproject.model.User;
 
@@ -33,16 +35,12 @@ import c.hayeon.seproject.model.User;
 public class ManageActivity extends AppCompatActivity {
     Toolbar menubar;
     User user;
-    Button deleteBtn;
 
+    ProgressDialog pd;
     private RecyclerView mAppointmentRv;
-    private AppointmentAdapter mAppointmentViewHolderAdapter;
-    private List<Appointment> mAppointments = new ArrayList<>();
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-    DatabaseReference myRef = database.getReference();
-
+    DatabaseReference myRef ;
+    private FirebaseRecyclerAdapter<Appointment, ManageActivity.AppointmentViewHolder> appointmentAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,55 +59,52 @@ public class ManageActivity extends AppCompatActivity {
         });
 
         mAppointmentRv = findViewById(R.id.bookingListRv);
-        //mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
-        //mAppointments.add(new Appointment("12/11/2018", "19:00", "Third Doe" ));
-        getAppointment(user.studentId);
         mAppointmentRv.setLayoutManager(new LinearLayoutManager(this));
-        deleteBtn = findViewById(R.id.deleteAppBtn);
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            
-        }
-    });
 
+        final String myuserID = user.getStudentId();
+
+        myRef = FirebaseDatabase.getInstance().getReference().child("User").child(myuserID).child("currentAppointments");
+        myRef.keepSynced(true);
+
+
+        final DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference().child("User").child(myuserID).child("currentAppointments");
+        Query appointmentQuery = appointmentRef.orderByKey();
+
+        FirebaseRecyclerOptions appointmentOptions = new FirebaseRecyclerOptions.Builder<Appointment>().setQuery(appointmentQuery, Appointment.class).build();
+        appointmentAdapter = new FirebaseRecyclerAdapter<Appointment, ManageActivity.AppointmentViewHolder>(appointmentOptions) {
+
+            @NonNull
+            @Override
+            public ManageActivity.AppointmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.appointment_list, parent, false);
+
+                return new AppointmentViewHolder(view);            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position, @NonNull Appointment model) {
+                holder.setDate(model.getDate());
+                holder.setDoc(model.getDoc());
+                holder.setTime(model.getTime());
+                final String t = String.valueOf(model.getId());
+                holder.mDeleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        appointmentRef.child(t).removeValue();
+
+                    }
+                });
+            }
+        };
+        mAppointmentRv.setAdapter(appointmentAdapter);
     }
 
-    private void getAppointment(String userID){
-        //database pull made appointment
-        final String myuserID = userID;
-        //   mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long Num = dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount();
-                String s_num = String.valueOf(Num+1);
-                for(int i=1;i<=Num;i++){
-                    s_num = String.valueOf(i);
-                    Appointment myAppointment = dataSnapshot.child("User").child(myuserID).child("currentAppointments").child(s_num).getValue(Appointment.class);
-                    mAppointments.add(myAppointment);
-                    //    mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
-                    //Toast.makeText(ManageActivity.this, "Work", Toast.LENGTH_SHORT).show();
-                    mAppointmentViewHolderAdapter = new AppointmentAdapter(mAppointments);
-
-
-                    mAppointmentRv.setAdapter(mAppointmentViewHolderAdapter);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-    }
-
-
+@Override
+public void onStart() {
+    super.onStart();
+    appointmentAdapter.startListening();
+}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -133,6 +128,30 @@ public class ManageActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
         context.finish();
+
+    }
+
+    public static class AppointmentViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        Button mDeleteBtn;
+        public AppointmentViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+            mDeleteBtn = itemView.findViewById(R.id.deleteAppBtn);
+        }
+        public void setDate(String date){
+            TextView dateTv = (TextView)mView.findViewById(R.id.dateTv);
+            dateTv.setText(date);
+        }
+        public void setTime(String time){
+            TextView timeTv = (TextView)mView.findViewById(R.id.timeTv);
+            timeTv.setText(time);
+        }
+        public void setDoc(String doc){
+            TextView docTv = (TextView)mView.findViewById(R.id.doctorTv);
+            docTv.setText(doc);
+        }
+
 
     }
 }

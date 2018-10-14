@@ -10,12 +10,18 @@ public class Appointment {
     String time;
     String doc;
     boolean status;
+    String id;
 
     public Appointment(String date, String time, String doc) {
         this.date = date;
         this.time = time;
         this.doc = doc;
         status = true;
+        id= String.valueOf(UUID.randomUUID());
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Appointment() {
