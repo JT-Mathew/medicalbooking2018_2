@@ -97,13 +97,24 @@ public class BookingActivity extends AppCompatActivity {
         times.add(new Time("10", "00"));
         times.add(new Time("10", "30"));
         times.add(new Time("11", "00"));
+        times.add(new Time("11", "30"));
+        times.add(new Time("12", "00"));
+        times.add(new Time("12", "30"));
+        times.add(new Time("13", "00"));
+        times.add(new Time("13", "30"));
+        times.add(new Time("14", "00"));
+        times.add(new Time("14", "30"));
+        times.add(new Time("15", "00"));
+        times.add(new Time("15", "30"));
+        times.add(new Time("16", "00"));
+        times.add(new Time("16", "30"));
+
         mDates.add(new Date("2018/10/17", times));
         mDates.add(new Date("2018/10/18", times));
         mDates.add(new Date("2018/10/19", times));
         mDates.add(new Date("2018/10/20", times));
         mDates.add(new Date("2018/10/21", times));
         mDates.add(new Date("2018/10/22", times));
-//mikhail.dsilva@gmail.com
         //setNewDoctorInformation(times,mDates);
 
     }
