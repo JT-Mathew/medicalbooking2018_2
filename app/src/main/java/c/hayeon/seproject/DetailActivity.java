@@ -102,7 +102,7 @@ public class DetailActivity extends AppCompatActivity {
         noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                noBtn.setEnabled(true);
+                noEt.setEnabled(true);
                 updateBtn.setEnabled(true);
             }
         });
