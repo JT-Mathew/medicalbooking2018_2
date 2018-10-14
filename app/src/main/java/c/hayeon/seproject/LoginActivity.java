@@ -58,7 +58,11 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search(idEt.getText().toString(),passwordEt.getText().toString());
+                if(idEt.getText().toString().equals("") || passwordEt.getText().toString().equals("")){
+                    Toast.makeText(LoginActivity.this, "You have to put in ID and password", Toast.LENGTH_SHORT).show();
+                } else {
+                    search(idEt.getText().toString(), passwordEt.getText().toString());
+                }
             }
         });
 
