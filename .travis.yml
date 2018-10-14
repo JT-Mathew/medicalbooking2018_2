@@ -20,4 +20,4 @@ deploy:
   api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
   app: healthservice2
 
-script: ./gradlew connectedAndroidTest
+script: ./gradlew clean assembleDebug
