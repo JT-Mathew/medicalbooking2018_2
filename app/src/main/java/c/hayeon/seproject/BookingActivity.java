@@ -63,9 +63,14 @@ public class BookingActivity extends AppCompatActivity {
         bookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String t= appointment.getDoc() + appointment.getDate() + appointment.getTime();
-               user.getCurrentAppointments().add(new  Appointment(appointment.getDate(), appointment.getTime(), appointment.getDoc()));
-               finish();
+                if(appointment.getDoc().equals("FALSE")){
+                    Toast.makeText(BookingActivity.this, "You have to choose a doctor, time and date.", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    String t = appointment.getDoc() + appointment.getDate() + appointment.getTime();
+                    user.getCurrentAppointments().add(new Appointment(appointment.getDate(), appointment.getTime(), appointment.getDoc()));
+                    finish();
+                }
         };
         });
     }

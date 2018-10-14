@@ -27,6 +27,8 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
         super(groups);
         mContext=context;
         mAppointment=appointment;
+        mAppointment.setDoc("FALSE");
+
     }
 
     @Override
@@ -54,17 +56,24 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
                 builder.setSingleChoiceItems(doctors, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       mAppointment.setDate(group.getTitle());
-                       mAppointment.setTime(t);
-                       mAppointment.setDoc(doctors[which]);
+                        mAppointment.setDate(group.getTitle());
+                        mAppointment.setTime(t);
+                        mAppointment.setDoc(doctors[which]);
                     }
                 });
-                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        mAppointment.setDoc("FALSE");
                     }
                 });
+                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
