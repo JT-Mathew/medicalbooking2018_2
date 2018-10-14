@@ -24,4 +24,8 @@ public class Time {
     public void setMin(String min) {
         this.min = min;
     }
+
+    public String getTime(){
+        return hour +":"+min;
+    }
 }
