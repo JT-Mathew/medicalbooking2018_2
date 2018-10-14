@@ -80,8 +80,8 @@ public class BookingActivity extends AppCompatActivity {
 
                 Appointment curAppointment = new Appointment(appointment.getDate(), appointment.getTime(), appointment.getDoc());
                 UpdateAppointmentNum(user.studentId, curAppointment);
-                finish();
 
+                finish();
             }
 
             ;
@@ -109,13 +109,15 @@ public class BookingActivity extends AppCompatActivity {
         times.add(new Time("16", "00"));
         times.add(new Time("16", "30"));
 
+
         mDates.add(new Date("2018/10/17", times));
         mDates.add(new Date("2018/10/18", times));
         mDates.add(new Date("2018/10/19", times));
         mDates.add(new Date("2018/10/20", times));
         mDates.add(new Date("2018/10/21", times));
         mDates.add(new Date("2018/10/22", times));
-        //setNewDoctorInformation(times,mDates);
+
+//        setNewDoctorInformation(times,mDates);
 
     }
 
@@ -164,7 +166,7 @@ public class BookingActivity extends AppCompatActivity {
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(BookingActivity.this, "Sorry, the selected time slot with doctor is unavailable!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookingActivity.this, "Sorry, this is unavailable", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -183,9 +185,9 @@ public class BookingActivity extends AppCompatActivity {
     private void setNewDoctorInformation(List<Time> times,List<Date> mDates){
         for(int i=0;i<=times.size();i++){
             for(int j=0;j<mDates.size();j++){
-                myRef.child("Doctor").child("Jane Doe").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
-                myRef.child("Doctor").child("Blah Test").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
-                myRef.child("Doctor").child("Third Doc").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
+                myRef.child("Doctor").child("Leonard Hofdstater").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
+                myRef.child("Doctor").child("Rajesh Kuthrapali").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
+                myRef.child("Doctor").child("Sheldon Cooper").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
             }
         }
     }

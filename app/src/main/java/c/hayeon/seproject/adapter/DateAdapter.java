@@ -51,7 +51,7 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                final String[] doctors = new String[]{"Jane Doe", "Blah Test", "Third Doc"};
+                final String[] doctors = new String[]{"Leonard Hofdstater", "Rajesh Kuthrapali", "Sheldon Cooper"};
                 builder.setTitle("Doctors available:");
                 builder.setSingleChoiceItems(doctors, -1, new DialogInterface.OnClickListener() {
                     @Override
