@@ -80,8 +80,8 @@ public class BookingActivity extends AppCompatActivity {
 
                 Appointment curAppointment = new Appointment(appointment.getDate(), appointment.getTime(), appointment.getDoc());
                 UpdateAppointmentNum(user.studentId, curAppointment);
+        //        finish();
 
-                finish();
             }
 
             ;
