@@ -12,65 +12,71 @@
         android:layout_height="wrap_content"
         android:padding = "8dp">
 
-    <TableRow
-        android:background="@drawable/subheading_design">
         <TextView android:text="Appointment"
-            android:padding="5dp"/>
-    </TableRow>
+            android:padding="5dp"
+            android:textColor="@color/colorDefault"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:background="@drawable/subheading_design"/>
 
-    <TableRow>
+
+    <TableRow
+        android:padding="5dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorDefault"
+            android:textStyle="bold"
             android:text="Date : " />
 
         <TextView
             android:id="@+id/dateTv"
             android:layout_width="wrap_content"
+            android:textColor="@color/colorDefault"
+
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:padding="5dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorDefault"
+            android:textStyle="bold"
             android:text="Time : " />
 
         <TextView
             android:id="@+id/timeTv"
             android:layout_width="wrap_content"
+            android:textColor="@color/colorDefault"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:padding="5dp"
+       >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorDefault"
+            android:textStyle="bold"
             android:text="Doctor : " />
 
         <TextView
             android:id="@+id/doctorTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </TableRow>
+            android:textColor="@color/colorDefault"
 
-    <TableRow>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location : " />
-
-        <TextView
-            android:id="@+id/locationTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_weight="1"/>
     </TableRow>
 

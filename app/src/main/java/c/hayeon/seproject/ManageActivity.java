@@ -1,6 +1,7 @@
 package c.hayeon.seproject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -33,6 +34,7 @@ public class ManageActivity extends AppCompatActivity {
     Toolbar menubar;
     User user;
 
+    ProgressDialog pd;
     private RecyclerView mAppointmentRv;
     private AppointmentAdapter mAppointmentViewHolderAdapter;
     private List<Appointment> mAppointments = new ArrayList<>();
@@ -68,6 +70,10 @@ public class ManageActivity extends AppCompatActivity {
         //database pull made appointment
         final String myuserID = userID;
 
+        pd = new ProgressDialog(this);
+        pd.setMessage("Loading your appointments... ");
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.show();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,9 +84,8 @@ public class ManageActivity extends AppCompatActivity {
                     Appointment myAppointment = dataSnapshot.child("User").child(myuserID).child("currentAppointments").child(s_num).getValue(Appointment.class);
                     mAppointments.add(myAppointment);
                     mAppointmentViewHolderAdapter = new AppointmentAdapter(mAppointments);
-
-
                     mAppointmentRv.setAdapter(mAppointmentViewHolderAdapter);
+                    pd.dismiss();
                 }
 
             }
