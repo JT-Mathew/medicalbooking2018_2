@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 //import c.hayeon.seproject.model.AddAppiontDetail;
@@ -49,17 +48,16 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         exitBtn = findViewById(R.id.exitBtn);
 
-        test = new User("Hayeon", "Kim", "1",
-                "1", "1", "Abc Avenue",
-                "ABCDEF", 1111);
+        test = new User("", "", "",
+                "", "",
+                "", "", "", "");
 
-        myRef.child("User").child(test.studentId).setValue(test);
+//        myRef.child("User").child(test.studentId).setValue(test);
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 search(idEt.getText().toString(),passwordEt.getText().toString());
             }
         });
@@ -73,12 +71,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private User getUser(){
 
-    private void search(String id, String password) {
+        //database
+        return null;
+    }
+
+    private void search(final String id, String password) {
         final String myID = id;
         final String myPassword = password;
         pd = new ProgressDialog(this);
-        pd.setMessage("Checking Credential...");
+        pd.setMessage("Verifying Credentials... ");
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.show();
         myRef.addValueEventListener(new ValueEventListener() {
@@ -89,14 +92,23 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, myUser.password, Toast.LENGTH_SHORT).show();
 
                     if(myUser.password.equals(myPassword)){
-
-                        Toast.makeText(LoginActivity.this, "Log in", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                        Toast.makeText(LoginActivity.this, "Log in successful!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        test.setFirstName(myUser.getFirstName());
+                        test.setLastName(myUser.getLastName());
+                        test.setAddress1(myUser.getAddress1());
+                        test.setAddress2(myUser.getAddress2());
+                        test.setStudentId(myUser.getStudentId());
+                        test.setMobile(myUser.getMobile());
+                        test.setEmail(myUser.getEmail());
+                        test.setDob(myUser.getDob());
+                        test.setPassword(myUser.getPassword());
                         intent.putExtra("user", test);
                         startActivityForResult(intent, 0);
                     }else{
                         pd.dismiss();
-                        Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Wrong credentials. Please try again!", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (NullPointerException e) {
