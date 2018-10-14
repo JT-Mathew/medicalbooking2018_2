@@ -59,8 +59,6 @@ public class ManageActivity extends AppCompatActivity {
         });
 
         mAppointmentRv = findViewById(R.id.bookingListRv);
-        //mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
-        //mAppointments.add(new Appointment("12/11/2018", "19:00", "Third Doe" ));
         getAppointment(user.studentId);
         mAppointmentRv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -69,7 +67,6 @@ public class ManageActivity extends AppCompatActivity {
     private void getAppointment(String userID){
         //database pull made appointment
         final String myuserID = userID;
-        //   mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -80,8 +77,6 @@ public class ManageActivity extends AppCompatActivity {
                     s_num = String.valueOf(i);
                     Appointment myAppointment = dataSnapshot.child("User").child(myuserID).child("currentAppointments").child(s_num).getValue(Appointment.class);
                     mAppointments.add(myAppointment);
-                    //    mAppointments.add(new Appointment("10/11/2018", "10:30", "Jane Doe" ));
-                    //Toast.makeText(ManageActivity.this, "Work", Toast.LENGTH_SHORT).show();
                     mAppointmentViewHolderAdapter = new AppointmentAdapter(mAppointments);
 
 
