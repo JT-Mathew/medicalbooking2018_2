@@ -1,1 +1,9 @@
 language: java
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "d46b9c26-6deb-46f5-97fd-d70b1b7ca63d"
+  app: healthservice2
+  strategy: git
+
