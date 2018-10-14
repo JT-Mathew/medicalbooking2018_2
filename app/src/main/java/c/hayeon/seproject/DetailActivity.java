@@ -1,7 +1,6 @@
 package c.hayeon.seproject;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,9 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import c.hayeon.seproject.model.User;
 
 public class DetailActivity extends AppCompatActivity {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    DatabaseReference myRef = database.getReference();
 
     EditText nameEt;
     EditText idEt;
@@ -54,13 +60,25 @@ public class DetailActivity extends AppCompatActivity {
 
         user = (User) getIntent().getExtras().getSerializable("user");
 
-        String name = user.getFirstName() + " " + user.getLastName();
-        String add1 = user.getRoadNumber() + " " + user.getStreetName();
-        String add2 = user.getSuburbName() + " " + user.getPostcode();
-        nameEt.setText(name);
+        final User test = new User(user.getFirstName(), user.getLastName(), user.getStudentId(),
+                user.getPassword(), user.getAddress1(),
+                user.getAddress2(), user.getMobile(), user.getEmail(), user.getDob());
+
+
+//        String name = user.getFirstName() + " " + user.getLastName();
+//        String add1 = user.getAddress1();
+//        String add2 = user.getAddress2();
+//        String studentId = user.getStudentId();
+//        String mobile = user.getMobile();
+//        String email = user.getEmail();
+//        String dob = user.getDob();
+        nameEt.setText(user.getFirstName() + " " + user.getLastName());
         idEt.setText(user.getStudentId());
-        add1Et.setText(add1);
-        add2Et.setText(add2);
+        add1Et.setText(user.getAddress1());
+        add2Et.setText(user.getAddress2());
+        noEt.setText(user.getMobile());
+        emailEt.setText(user.getEmail());
+        dobEt.setText(user.getDob());
 
         //menubar related
         menubar = findViewById(R.id.menuBar);
@@ -85,10 +103,14 @@ public class DetailActivity extends AppCompatActivity {
 
         updateBtn.setEnabled(false);
 
+
         add1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add1Et.setEnabled(true);
+
+
+                test.setAddress1(add1Et.getText().toString());
                 updateBtn.setEnabled(true);
             }
         });
@@ -96,13 +118,14 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 add2Et.setEnabled(true);
+                test.setAddress2(add2Et.getText().toString());
                 updateBtn.setEnabled(true);
             }
         });
         noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                noBtn.setEnabled(true);
+                noEt.setEnabled(true);
                 updateBtn.setEnabled(true);
             }
         });
@@ -117,11 +140,18 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //update it on database
+                test.setAddress1(add1Et.getText().toString());
+                test.setAddress2(add2Et.getText().toString());
+                test.setMobile(noEt.getText().toString());
+                myRef.child("User").child(user.getStudentId()).setValue(test);
+
+
             }
         });
     }
 
     @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
@@ -133,18 +163,13 @@ public class DetailActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_logout:
-               GoToActivityAsNewTask(this, LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    public static void GoToActivityAsNewTask(Activity context, Class<?> clazz) {
-        Intent intent = new Intent(context, clazz);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-        context.finish();
-
     }
 
 
