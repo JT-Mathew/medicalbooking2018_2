@@ -7,14 +7,17 @@ import java.util.List;
 
 public class User implements Serializable{
 
-    String firstName;
-    String lastName;
+    public String firstName;
+    public String lastName;
     public String studentId;
     public String password;
-    String roadNumber;
-    String streetName;
-    String suburbName;
-    int postcode;
+    public String address1;
+    public String address2;
+    public String mobile;
+    public String email;
+    public String dob;
+
+
     List<Appointment> currentAppointments= new ArrayList<>();
     List<Appointment> pastAppointments = new ArrayList<>();
 
@@ -22,15 +25,16 @@ public class User implements Serializable{
 
     }
 
-    public User(String firstName, String lastName, String studentId, String password, String roadNumber, String streetName, String suburbName, int postcode) {
+    public User(String firstName, String lastName, String studentId, String password, String address1, String address2, String mobile, String email, String dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentId = studentId;
-        this.roadNumber = roadNumber;
-        this.streetName = streetName;
-        this.suburbName = suburbName;
-        this.postcode = postcode;
+        this.address1 = address1;
+        this.address2 = address2;
         this.password = password;
+        this.mobile = mobile;
+        this.email = email;
+        this.dob = dob;
     }
 
     public List<Appointment> getCurrentAppointments() {
@@ -57,40 +61,58 @@ public class User implements Serializable{
         return password;
     }
 
-    public String getRoadNumber() {
-        return roadNumber;
+    public String getAddress1() {
+        return address1;
     }
 
-    public String getStreetName() {
-        return streetName;
+    public String getAddress2() {
+        return address2;
     }
 
-    public String getSuburbName() {
-        return suburbName;
+    public String getMobile() {
+        return mobile;
     }
 
-    public int getPostcode() {
-        return postcode;
+    public String getEmail() {
+        return email;
     }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setStudentId(String studentId) { this.studentId = studentId;}
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setRoadNumber(String roadNumber) {
-        this.roadNumber = roadNumber;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
-    public void setSuburbName(String suburbName) {
-        this.suburbName = suburbName;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public void setPostcode(int postcode) {
-        this.postcode = postcode;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public void makeAppointment(Appointment appointment){
