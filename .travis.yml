@@ -12,13 +12,6 @@ android:
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
 
-before_script:
-  # Create and start emulator
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
 deploy:
   provider: heroku
   api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
