@@ -145,7 +145,11 @@ public class DetailActivity extends AppCompatActivity {
                 test.setMobile(noEt.getText().toString());
                 myRef.child("User").child(user.getStudentId()).setValue(test);
 
-
+                add1Et.setEnabled(false);
+                add2Et.setEnabled(false);
+                noEt.setEnabled(false);
+                favDocEt.setEnabled(false);
+                updateBtn.setEnabled(false);
             }
         });
     }

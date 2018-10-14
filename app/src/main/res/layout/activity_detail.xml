@@ -20,7 +20,9 @@
             android:background="@drawable/subheading_design"
             android:padding="10dp">
 
-            <TextView android:text="Personal Details" />
+            <TextView android:text="Personal Details"
+                android:textStyle="bold"
+                />
         </TableRow>
 
         <TableRow>
@@ -84,7 +86,9 @@
             android:background="@drawable/subheading_design"
             android:padding="10dp">
 
-            <TextView android:text="Contact Details" />
+            <TextView android:text="Contact Details"
+                android:textStyle="bold"
+                />
         </TableRow>
 
         <TableRow>
@@ -152,7 +156,9 @@
             android:background="@drawable/subheading_design"
             android:padding="10dp">
 
-            <TextView android:text="Favourite Doctor" />
+            <TextView android:text="Favourite Doctor"
+                android:textStyle="bold"
+                />
         </TableRow>
     </TableLayout>
 
@@ -182,6 +188,6 @@
         android:text="UPDATE"
         android:id="@+id/updateBtn"
         android:background="@drawable/button_design"
-        android:textColor="@android:color/black"
+        android:textColor="@drawable/text_button"
         />
 </LinearLayout>
