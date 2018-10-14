@@ -27,4 +27,4 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task stage(dependsOn: ['build', 'clean'])
+
