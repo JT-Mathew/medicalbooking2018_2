@@ -25,8 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import c.hayeon.seproject.model.Appointment;
 import c.hayeon.seproject.model.User;
@@ -67,6 +65,7 @@ public class ManageActivity extends AppCompatActivity {
         myRef.keepSynced(true);
 
 
+        final DatabaseReference appRef = FirebaseDatabase.getInstance().getReference().child("Doctor");
         final DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference().child("User").child(myuserID).child("currentAppointments");
         Query appointmentQuery = appointmentRef.orderByKey();
 
@@ -87,10 +86,13 @@ public class ManageActivity extends AppCompatActivity {
                 holder.setDoc(model.getDoc());
                 holder.setTime(model.getTime());
                 final String t = String.valueOf(model.getId());
+                final String doc = model.getDoc();
+                final String date = model.getDate();
+                final String time = model.getTime();
                 holder.mDeleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        appRef.child(doc).child(date).child(time).setValue("Available");
                         appointmentRef.child(t).removeValue();
 
                     }
