@@ -18,12 +18,13 @@ public class Appointment {
         this.time = time;
         this.doc = doc;
         status = true;
-        id= String.valueOf(UUID.randomUUID());
     }
 
     public String getId() {
         return id;
     }
+
+    public String setId(String id) {return this.id = id; }
 
     public Appointment() {
     }

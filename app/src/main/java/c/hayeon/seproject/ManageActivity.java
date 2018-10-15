@@ -89,7 +89,7 @@ public class ManageActivity extends AppCompatActivity {
                 holder.setDate(model.getDate());
                 holder.setDoc(model.getDoc());
                 holder.setTime(model.getTime());
-                final String t = String.valueOf(model.getId());
+                final String t = model.getId();
                 final String doc = model.getDoc();
                 final String date = model.getDate();
                 final String time = model.getTime();
@@ -97,7 +97,7 @@ public class ManageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         appRef.child(doc).child(date).child(time).setValue("Available");
-                        appointmentRef.child(t).removeValue();
+                        myRef.child(t).removeValue();
 
                     }
                 });
