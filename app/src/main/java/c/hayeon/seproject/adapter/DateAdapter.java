@@ -80,6 +80,7 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
         });
     }
 
+//d
 
     @Override
     public void onBindGroupViewHolder(DateViewHolder holder, int flatPosition, ExpandableGroup group) {

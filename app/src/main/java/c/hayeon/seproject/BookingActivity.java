@@ -183,6 +183,7 @@ public class BookingActivity extends AppCompatActivity {
         });
 
     }
+//d
 
 
     private void setNewDoctorInformation(List<Time> times,List<Date> mDates){

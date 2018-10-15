@@ -11,6 +11,7 @@ public class Appointment {
     String doc;
     boolean status;
     String id;
+//d
 
     public Appointment(String date, String time, String doc) {
         this.date = date;

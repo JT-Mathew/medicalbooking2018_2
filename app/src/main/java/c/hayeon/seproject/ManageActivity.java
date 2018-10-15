@@ -142,15 +142,15 @@ public void onStart() {
             mDeleteBtn = itemView.findViewById(R.id.deleteAppBtn);
         }
         public void setDate(String date){
-            TextView dateTv = (TextView)mView.findViewById(R.id.dateTv);
+            TextView dateTv = mView.findViewById(R.id.dateTv);
             dateTv.setText(date);
         }
         public void setTime(String time){
-            TextView timeTv = (TextView)mView.findViewById(R.id.timeTv);
+            TextView timeTv = mView.findViewById(R.id.timeTv);
             timeTv.setText(time);
         }
         public void setDoc(String doc){
-            TextView docTv = (TextView)mView.findViewById(R.id.doctorTv);
+            TextView docTv = mView.findViewById(R.id.doctorTv);
             docTv.setText(doc);
         }
 
