@@ -136,8 +136,10 @@ after_success:
 
 deploy:
   provider: heroku
-  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
+  api_key: 4b9292cb-64d6-4520-bf6d-9043996a7a79
   app: healthservice2
+  on:
+    jdk: oraclejdk8
 
 #language: android
 #jdk: oraclejdk8
