@@ -43,6 +43,7 @@ public class BookingActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     DatabaseReference myRef = database.getReference();
+    int uniqueId = 0;
 
     Button bookBtn;
 
@@ -158,7 +159,11 @@ public class BookingActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String id = myAppointment.getId();
+                String x = myuserID +
+                        String.valueOf(dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount()) +
+                        myAppointment.getTime();
+                String id = String.valueOf(x);
+                myAppointment.setId(id);
                 String state = dataSnapshot.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).getValue(String.class);
 
                 if(state.equals("Available")){
