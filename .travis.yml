@@ -80,14 +80,14 @@ script:
   - ./gradlew assembleRelease
 #  - ./gradlew :app:createDebugAndroidTestCoverageReport --info --stacktrace
   - ./gradlew clean assembleDebug
-  
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 
-deploy:
-  provider: heroku
-  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
-  app: healthservice2
+#deploy:
+#  provider: heroku
+#  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
+#  app: healthservice2
 
 
