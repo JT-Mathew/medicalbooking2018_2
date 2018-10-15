@@ -134,11 +134,10 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-##Test
-##deploy:
-##  provider: heroku
-##  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
-##  app: healthservice2
+deploy:
+  provider: heroku
+  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
+  app: healthservice2
 
 #language: android
 #jdk: oraclejdk8
