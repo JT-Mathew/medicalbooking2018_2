@@ -159,9 +159,11 @@ public class BookingActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String y = myAppointment.getTime().replace(":", "0");
+
                 String x = myuserID +
-                        String.valueOf(dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount()) +
-                        myAppointment.getTime();
+                        String.valueOf(dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount())
+                        + y;
                 String id = String.valueOf(x);
                 myAppointment.setId(id);
                 String state = dataSnapshot.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).getValue(String.class);
