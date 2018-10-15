@@ -21,6 +21,7 @@ android {
         jcenter()
         mavenCentral()
         mavenLocal()
+        maven { url 'https://maven.google.com' }
     }
     lintOptions {
         abortOnError false
