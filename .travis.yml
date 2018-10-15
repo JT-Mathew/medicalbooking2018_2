@@ -2,6 +2,16 @@ language: android
 jdk: oraclejdk8
 sudo: false
 
+before_install:
+  - yes | sdkmanager "platforms;android-27"
+  - chmod +x gradlew
+
+script: ./gradlew clean assembleDebug
+
+install:
+  - true
+  - chmod +x ./gradlew; ls -l gradlew; ./gradlew wrapper -v
+
 android:
   components:
     - platform-tools
@@ -11,15 +21,16 @@ android:
     - android-22
     - android-27
     - sys-img-armeabi-v7a-android-22
+    - sys-img-x86-android-22
     - extra-android-m2repository
 
-before_install:
-  - yes | sdkmanager "platforms;android-27"
-  - chmod +x gradlew
+
+
+
 
 deploy:
   provider: heroku
   api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
   app: healthservice2
 
-script: ./gradlew clean assembleDebug
+
