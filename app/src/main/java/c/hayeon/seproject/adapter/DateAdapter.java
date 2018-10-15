@@ -58,6 +58,7 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
                         mAppointment.setDate(group.getTitle());
                         mAppointment.setTime(t);
                         mAppointment.setDoc(doctors[which]);
+
                     }
                 });
                 builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {

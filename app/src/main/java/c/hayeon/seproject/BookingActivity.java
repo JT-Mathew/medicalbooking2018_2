@@ -43,6 +43,7 @@ public class BookingActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     DatabaseReference myRef = database.getReference();
+    int uniqueId = 0;
 
     Button bookBtn;
 
@@ -158,13 +159,14 @@ public class BookingActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long Num = dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount();
-                String a = String.valueOf(Num+1);
 
+                String x = myAppointment.getId();
+                String id = String.valueOf(x);
+                myAppointment.setId(id);
                 String state = dataSnapshot.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).getValue(String.class);
 
                 if(state.equals("Available")){
-                    myRef.child("User").child(user.studentId).child("currentAppointments").child(a).setValue(myAppointment);
+                    myRef.child("Appointment").child(user.studentId).child("curAppointment").child(id).setValue(myAppointment);
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
                 }else{
