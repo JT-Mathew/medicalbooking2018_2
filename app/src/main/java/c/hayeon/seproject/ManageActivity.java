@@ -66,7 +66,7 @@ public class ManageActivity extends AppCompatActivity {
 
 
         final DatabaseReference appRef = FirebaseDatabase.getInstance().getReference().child("Doctor");
-        final DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference().child("User").child(myuserID).child("currentAppointments");
+        final DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference().child("Appointment").child(myuserID).child("curAppointment");
         Query appointmentQuery = appointmentRef.orderByKey();
 
         FirebaseRecyclerOptions appointmentOptions = new FirebaseRecyclerOptions.Builder<Appointment>().setQuery(appointmentQuery, Appointment.class).build();

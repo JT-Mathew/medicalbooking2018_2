@@ -169,7 +169,7 @@ public class BookingActivity extends AppCompatActivity {
                 String state = dataSnapshot.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).getValue(String.class);
 
                 if(state.equals("Available")){
-                    myRef.child("User").child(user.studentId).child("currentAppointments").child(id).setValue(myAppointment);
+                    myRef.child("Appointment").child(user.studentId).child("curAppointment").child(id).setValue(myAppointment);
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
                 }else{
