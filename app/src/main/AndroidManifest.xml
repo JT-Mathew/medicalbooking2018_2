@@ -24,9 +24,7 @@
         <activity android:name=".DetailActivity" />
         <activity android:name=".BookingActivity" />
         <activity
-            android:name=".ManageActivity"
-            android:label="@string/title_activity_manage"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".ManageActivity"/>
     </application>
 
 </manifest>

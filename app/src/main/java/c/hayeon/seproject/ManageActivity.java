@@ -1,3 +1,5 @@
+
+
 package c.hayeon.seproject;
 
 import android.app.Activity;
@@ -37,8 +39,9 @@ public class ManageActivity extends AppCompatActivity {
     ProgressDialog pd;
     private RecyclerView mAppointmentRv;
 
-    DatabaseReference myRef ;
+    DatabaseReference myRef;
     private FirebaseRecyclerAdapter<Appointment, ManageActivity.AppointmentViewHolder> appointmentAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +81,8 @@ public class ManageActivity extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.appointment_list, parent, false);
 
-                return new AppointmentViewHolder(view);            }
+                return new AppointmentViewHolder(view);
+            }
 
             @Override
             protected void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position, @NonNull Appointment model) {
@@ -102,11 +106,12 @@ public class ManageActivity extends AppCompatActivity {
         mAppointmentRv.setAdapter(appointmentAdapter);
     }
 
-@Override
-public void onStart() {
-    super.onStart();
-    appointmentAdapter.startListening();
-}
+    @Override
+    public void onStart() {
+        super.onStart();
+        appointmentAdapter.startListening();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -125,6 +130,7 @@ public void onStart() {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     public static void GoToActivityAsNewTask(Activity context, Class<?> clazz) {
         Intent intent = new Intent(context, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -133,23 +139,27 @@ public void onStart() {
 
     }
 
-    public static class AppointmentViewHolder extends RecyclerView.ViewHolder{
+    public static class AppointmentViewHolder extends RecyclerView.ViewHolder {
         View mView;
         Button mDeleteBtn;
-        public AppointmentViewHolder(View itemView){
+
+        public AppointmentViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             mDeleteBtn = itemView.findViewById(R.id.deleteAppBtn);
         }
-        public void setDate(String date){
+
+        public void setDate(String date) {
             TextView dateTv = mView.findViewById(R.id.dateTv);
             dateTv.setText(date);
         }
-        public void setTime(String time){
+
+        public void setTime(String time) {
             TextView timeTv = mView.findViewById(R.id.timeTv);
             timeTv.setText(time);
         }
-        public void setDoc(String doc){
+
+        public void setDoc(String doc) {
             TextView docTv = mView.findViewById(R.id.doctorTv);
             docTv.setText(doc);
         }

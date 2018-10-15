@@ -52,6 +52,7 @@ public class BookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
 
+        getDates();
 
         menubar = findViewById(R.id.menuBar);
         setSupportActionBar(menubar);
@@ -67,7 +68,6 @@ public class BookingActivity extends AppCompatActivity {
         bookBtn = findViewById(R.id.bookBtn);
 
         mTimeDateRv = findViewById(R.id.timeDateRv);
-        getDates();
         appointment = new Appointment();
         mDateAdapter = new DateAdapter(mDates, this, appointment);
         mTimeDateRv.setLayoutManager(new LinearLayoutManager(BookingActivity.this));
@@ -118,7 +118,7 @@ public class BookingActivity extends AppCompatActivity {
         mDates.add(new Date("2018/10/21", times));
         mDates.add(new Date("2018/10/22", times));
 
-//        setNewDoctorInformation(times,mDates);
+     //  setNewDoctorInformation(times,mDates);
 
     }
 
@@ -158,18 +158,17 @@ public class BookingActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String id = myAppointment.getId();
+                long Num = dataSnapshot.child("User").child(myuserID).child("currentAppointments").getChildrenCount();
+                String a = String.valueOf(Num+1);
+
                 String state = dataSnapshot.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).getValue(String.class);
 
                 if(state.equals("Available")){
-                    myRef.child("User").child(user.studentId).child("currentAppointments").child(id).setValue(myAppointment);
+                    myRef.child("User").child(user.studentId).child("currentAppointments").child(a).setValue(myAppointment);
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
-                    finish();
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
-
                 }else{
                     Toast.makeText(BookingActivity.this, "Sorry, this is unavailable", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
 
 
@@ -183,15 +182,14 @@ public class BookingActivity extends AppCompatActivity {
         });
 
     }
-//d
 
 
     private void setNewDoctorInformation(List<Time> times,List<Date> mDates){
-        for(int i=0;i<=times.size();i++){
-            for(int j=0;j<mDates.size();j++){
-                myRef.child("Doctor").child("Leonard Hofdstater").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
-                myRef.child("Doctor").child("Rajesh Kuthrapali").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
-                myRef.child("Doctor").child("Sheldon Cooper").child(mDates.get(j).getDate()).child(times.get(i).getTime()).setValue("Available");
+        for(int i=0;i<=mDates.size() -1 ;i++){
+            for(int j=0;j<times.size() -1 ;j++){
+                myRef.child("Doctor").child("Leonard Hofdstater").child(mDates.get(i).getDate()).child(times.get(j).getTime()).setValue("Available");
+                myRef.child("Doctor").child("Rajesh Kuthrapali").child(mDates.get(i).getDate()).child(times.get(j).getTime()).setValue("Available");
+                myRef.child("Doctor").child("Sheldon Cooper").child(mDates.get(i).getDate()).child(times.get(j).getTime()).setValue("Available");
             }
         }
     }

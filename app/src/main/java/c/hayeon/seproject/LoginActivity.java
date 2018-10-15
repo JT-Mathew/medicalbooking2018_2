@@ -5,15 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//import c.hayeon.seproject.model.AddAppiontDetail;
-//import c.hayeon.seproject.model.Appointment;
-//import c.hayeon.seproject.model.Doctor;
 import c.hayeon.seproject.model.User;
 
 import com.google.firebase.database.DataSnapshot;
@@ -52,9 +48,6 @@ public class LoginActivity extends AppCompatActivity {
                 "", "",
                 "", "", "", "");
 
-//        myRef.child("User").child(test.studentId).setValue(test);
-
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-//d
     private void search(final String id, String password) {
         final String myID = id;
         final String myPassword = password;

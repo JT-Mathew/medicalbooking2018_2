@@ -1,6 +1,5 @@
 package c.hayeon.seproject;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }//d
+    }
     public static void GoToActivityAsNewTask(Activity context, Class<?> clazz) {
         Intent intent = new Intent(context, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

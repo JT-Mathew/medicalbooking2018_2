@@ -27,7 +27,6 @@ public class DateAdapter extends ExpandableRecyclerViewAdapter<DateViewHolder, T
         super(groups);
         mContext=context;
         mAppointment=appointment;
-        mAppointment.setDoc("FALSE");
 
     }
 
