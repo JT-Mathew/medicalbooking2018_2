@@ -17,6 +17,7 @@ public class Appointment {
         this.time = time;
         this.doc = doc;
         status = true;
+        id = String.valueOf(UUID.randomUUID());
     }
 
     public void setId(String id) {
