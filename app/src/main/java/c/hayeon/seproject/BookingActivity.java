@@ -164,9 +164,12 @@ public class BookingActivity extends AppCompatActivity {
                 if(state.equals("Available")){
                     myRef.child("User").child(user.studentId).child("currentAppointments").child(id).setValue(myAppointment);
                     myRef.child("Doctor").child(myAppointment.getDoc()).child(myAppointment.getDate()).child(myAppointment.getTime()).setValue("Unavailable");
+                    finish();
                     Toast.makeText(BookingActivity.this, "Booked", Toast.LENGTH_SHORT).show();
+
                 }else{
                     Toast.makeText(BookingActivity.this, "Sorry, this is unavailable", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
 
