@@ -116,6 +116,7 @@ notifications:
 
 before_install:
   - yes | sdkmanager "platforms;android-27"
+  - yes | sdkmanager --licenses
   - chmod +x gradlew
 
 install:
@@ -147,6 +148,7 @@ deploy:
     jdk: oraclejdk8
   run:
     - yes | sdkmanager "platforms;android-27"
+    - yes | sdkmanager --licenses
 
 
 #language: android
