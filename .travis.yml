@@ -1,53 +1,4 @@
 #language: android
-#sudo: required
-#jdk: oraclejdk8
-#
-#before_cache:
-#  -rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-#  -rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-#cache:
-# directories:
-#  -$HOME/.gradle/caches/
-#  -$HOME/.gradle/wrapper/
-#
-# env:
-#  global:
-#  - ANDROID_API=27
-#  - EMULATOR_API=22
-#  - ANDROID_BUILD_TOOLS=28.0.2
-#  - ADB_INSTALL_TIMEOUT=5 # minutes
-#
-#android:
-# components:
-#  - tools
-#  - platform-tools
-#  - build-tools-$ANDROID_BUILD_TOOLS
-#  - android-$ANDROID_API
-#  - android-$EMULATOR_API_LEVEL
-#  - extra-google-m2repository
-#  - extra-android-m2repository # for design library
-#  - addon-google_apis-google-19 # google play services
-#  - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-#  - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-# licenses:
-#  - android-sdk-preview-license-.+
-#  - android-sdk-license-.+
-#  - google-gdk-license-.+
-#
-#before_install:
-#  - chmod +x gradlew
-#  - yes | sdkmanager "platforms;android-27"
-#
-#before_script:
-#  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-#  - emulator -avd test -no-skin -no-audio -no-window &
-#  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &
-#
-#script:
-#  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
-
-#language: android
 #jdk: oraclejdk8
 #sudo: false
 #
@@ -141,94 +92,11 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-deploy:
-  provider: heroku
-  api_key: 4b9292cb-64d6-4520-bf6d-9043996a7a79
-  app: healthservice2
-  on:
-    jdk: oraclejdk8
-  run:
-    - yes | sdkmanager "platforms;android-27"
-
-#language: android
-#jdk: oraclejdk8
-#
-#before_install:
-#  - yes | sdkmanager "platforms;android-27"
-#  - chmod +x gradlew
-#
-#android:
-#  components:
-#    - tools
-#    - build-tools-27.0.2
-#    - extra-android-support
-#    - extra-google-m2repository
-#    - extra-android-m2repository
-#licenses:
-#    - 'android-sdk-license-.+'
-#
-#language: android
-#
-#before_cache:
-#  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-#  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-#cache:
-#  directories:
-#    - $HOME/.gradle/caches/
-#    - $HOME/.gradle/wrapper/
-#
-#env:
-#  global:
-#    - COMPILE_SDK_VERSION=27 # Same as `compileSdkVersion` in build.gradle
-#    - EMULATOR_API=22
-#    - BUILD_TOOLS_VERSION=28.0.2 # Same as `buildToolsVersion` in build.gradle
-#    - ABI=armeabi-v7a # ARM ABI v7a by default
-#    - ADB_INSTALL_TIMEOUT=5 # minutes
-#
-#android:
-#  components:
-#    - tools # Update android-sdk (also called android-sdk-tools)
-#    - platform-tools
-#    - tools # Write the second time to update to thes newest as described in the document
-#    - build-tools-${BUILD_TOOLS_VERSION} # For building
-#    - android-${COMPILE_SDK_VERSION} # For building
-#    - android-${EMULATOR_API} # For testing
-#
-#    - extra-android-m2repository # Support library
-#
-#    - sys-img-${ABI}-android-${EMULATOR_API} # Emulator image
-#
-#notifications:
-#  email: false
-#
-#before_install:
-#  - yes | sdkmanager "platforms;android-27"
-#  - chmod +x gradlew
-#
-#install:
-#  - sdkmanager --list || true # Debug / Observation
-#  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" #&> /dev/null
-#  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2" #&> /dev/null
-#  - avdmanager --list || true  # Debug / Observation
-#
-#before_script:
-#    #  - echo no | avdmanager create avd -n test -k android-${EMULATOR_API} -f --abi ${ABI} --tag "$TAG"
-#  - echo no | android create avd --force -n test -t android-${EMULATOR_API} --abi ${ABI}
-#  - emulator -avd test -no-audio -no-window &
-#  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &
-#
-#script:
-#  - ./gradlew assembleRelease
-#
-#
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
-#
-#
 #deploy:
 #  provider: heroku
-#  api_key: d46b9c26-6deb-46f5-97fd-d70b1b7ca63d
+#  api_key: 4b9292cb-64d6-4520-bf6d-9043996a7a79
 #  app: healthservice2
-
-
+#  on:
+#    jdk: oraclejdk8
+#  run:
+#    - yes | sdkmanager "platforms;android-27"
