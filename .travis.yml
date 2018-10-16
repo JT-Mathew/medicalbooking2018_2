@@ -6,6 +6,10 @@ before_install:
   - yes | sdkmanager "platforms;android-27"
   - chmod +x gradlew
 
+before_script:
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+  
 script:
   - ./gradlew clean assembleDebug
 
