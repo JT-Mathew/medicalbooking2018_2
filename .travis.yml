@@ -29,14 +29,14 @@ android:
 #    - sys-img-x86-android-22
     - extra-android-m2repository
 
-deploy:
-  provider: heroku
-  api_key: 4b9292cb-64d6-4520-bf6d-9043996a7a79
-  app: healthservice2
-  on:
-    jdk: oraclejdk8
-  run:
-    - yes | sdkmanager "platforms;android-27"
+#deploy:
+#  provider: heroku
+#  api_key: 4b9292cb-64d6-4520-bf6d-9043996a7a79
+#  app: healthservice2
+#  on:
+#    jdk: oraclejdk8
+#  run:
+#    - yes | sdkmanager "platforms;android-27"
 
 #
 #language: android
