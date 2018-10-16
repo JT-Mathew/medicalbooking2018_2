@@ -21,8 +21,8 @@ android:
     - tools
 #    - android-22
     - android-27
-    - sys-img-armeabi-v7a-android-22
-    - sys-img-x86-android-22
+#    - sys-img-armeabi-v7a-android-22
+#    - sys-img-x86-android-22
     - extra-android-m2repository
 
 #
