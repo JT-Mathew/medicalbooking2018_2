@@ -127,6 +127,8 @@ install:
 
 before_script:
     #  - echo no | avdmanager create avd -n test -k android-${EMULATOR_API} -f --abi ${ABI} --tag "$TAG"
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
   - echo no | android create avd --force -n test -t android-${EMULATOR_API} --abi ${ABI}
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
