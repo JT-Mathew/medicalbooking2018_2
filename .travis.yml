@@ -92,7 +92,7 @@ env:
     - BUILD_TOOLS_VERSION=28.0.2 # Same as `buildToolsVersion` in build.gradle
     - ABI=armeabi-v7a # ARM ABI v7a by default
     - ADB_INSTALL_TIMEOUT=5 # minutes
-    
+
 licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
@@ -145,6 +145,9 @@ deploy:
   app: healthservice2
   on:
     jdk: oraclejdk8
+  run:
+    - yes | sdkmanager "platforms;android-27"
+
 
 #language: android
 #jdk: oraclejdk8
