@@ -4,6 +4,7 @@ sudo: false
 
 before_install:
   - yes | sdkmanager "platforms;android-27"
+  - yes | sudo sdkmanager --licenses
   - chmod +x gradlew
 
 script:
